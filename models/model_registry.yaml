@@ -1,0 +1,358 @@
+ANN (DL):
+  config: &id001
+    activation: ReLU
+    batch_norm: true
+    batch_size: 256
+    dropout_rates:
+    - 0.3
+    - 0.3
+    - 0.2
+    early_stopping: patience=15, min_delta=1e-4
+    framework: PyTorch
+    hidden_dims:
+    - 256
+    - 128
+    - 64
+    input_dim: 37
+    loss: LabelSmoothingCrossEntropy(smoothing=0.05)
+    lr: 0.001
+    lr_scheduler: ReduceLROnPlateau(factor=0.5, patience=5)
+    max_epochs: 200
+    model_name: ANN
+    n_classes: 3
+    optimizer: AdamW
+    weight_decay: 0.0001
+    weight_init: kaiming_uniform (He)
+  framework: PyTorch
+  hyperparameters: *id001
+  metrics:
+    accuracy: 0.6
+    brier_score: 0.512965021969263
+    ece: 0.023402935501561074
+    f1_macro: 0.47672175028875347
+    log_loss: 0.869486391544342
+    mce: 0.0688546895980835
+    model_name: ANN
+    pr_auc_macro: 0.5773259889814096
+    precision_macro: 0.5278198655515854
+    prediction_time_sec: 0.0629
+    recall_macro: 0.5147518927951018
+    roc_auc_macro: 0.7363614696865283
+    training_time_sec: 33.19
+  model_directory: models/ann
+  trained_at: '2026-06-28 17:37:57'
+AdaBoost:
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.6283161128176487
+    brier_score: 0.6262112329502947
+    f1_macro: 0.47647619331853946
+    log_loss: 1.039542465381202
+    memory_usage_mb: 0.078125
+    model_name: AdaBoost
+    precision_macro: 0.5333581294991906
+    prediction_time_sec: 0.016300678253173828
+    recall_macro: 0.5297357547891627
+    roc_auc_macro: 0.747174899595685
+    training_time_sec: 0.6227090358734131
+  model_directory: models/adaboost
+  trained_at: '2026-06-28 16:48:55'
+Decision Tree:
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.6389276738341245
+    brier_score: 0.4823221095854999
+    f1_macro: 0.47580377632707194
+    log_loss: 0.834972486132748
+    memory_usage_mb: 0.359375
+    model_name: Decision Tree
+    precision_macro: 0.5240024469083059
+    prediction_time_sec: 0.0011208057403564453
+    recall_macro: 0.5404509769932954
+    roc_auc_macro: 0.7597978380412066
+    training_time_sec: 0.06409907341003418
+  model_directory: models/decision_tree
+  trained_at: '2026-06-28 16:48:47'
+Extra Trees:
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.6031834683049427
+    brier_score: 0.5280114003459389
+    f1_macro: 0.42876048098695874
+    log_loss: 0.9019630633766953
+    memory_usage_mb: 0.203125
+    model_name: Extra Trees
+    precision_macro: 0.5374234517830591
+    prediction_time_sec: 0.03699207305908203
+    recall_macro: 0.4770455983792146
+    roc_auc_macro: 0.7515977116534929
+    training_time_sec: 0.12308812141418457
+  model_directory: models/extra_trees
+  trained_at: '2026-06-28 16:48:48'
+Extra Trees (Optimized):
+  hyperparameters:
+    max_depth: null
+    max_features: sqrt
+    min_samples_split: 5
+    n_estimators: 200
+  metrics:
+    accuracy: 0.605761316872428
+    brier_score: 0.5132005974698979
+    ece: 0.02253208352385308
+    f1_macro: 0.48481230335961367
+    log_loss: 0.8718678330285522
+    mce: 0.2713541666666667
+    model_name: Extra Trees
+    pr_auc_macro: 0.5705859926054279
+    precision_macro: 0.526817620954689
+    prediction_time_sec: 0.0772240161895752
+    recall_macro: 0.5172080467161085
+    roc_auc_macro: 0.7350172598102255
+    training_time_sec: 14.779107809066772
+  model_directory: models/extra_trees_optimized
+  trained_at: '2026-06-28 17:02:14'
+Gradient Boosting:
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.6534487573303547
+    brier_score: 0.46875066158829487
+    f1_macro: 0.5085006409829158
+    log_loss: 0.8007005400493591
+    memory_usage_mb: 4.140625
+    model_name: Gradient Boosting
+    precision_macro: 0.5783670663159185
+    prediction_time_sec: 0.019363880157470703
+    recall_macro: 0.5545877095156452
+    roc_auc_macro: 0.7762465337677865
+    training_time_sec: 6.446528196334839
+  model_directory: models/gradient_boosting
+  trained_at: '2026-06-28 16:48:55'
+Gradient Boosting (Optimized):
+  hyperparameters:
+    learning_rate: 0.05
+    max_depth: 6
+    min_samples_split: 5
+    n_estimators: 100
+    subsample: 0.8
+  metrics:
+    accuracy: 0.6117969821673526
+    brier_score: 0.49916721395551267
+    ece: 0.01789677065503426
+    f1_macro: 0.4864181829847551
+    log_loss: 0.846284859700157
+    mce: 0.23235821384793864
+    model_name: Gradient Boosting
+    pr_auc_macro: 0.5901272053666259
+    precision_macro: 0.5268620654151854
+    prediction_time_sec: 0.045269012451171875
+    recall_macro: 0.5258880906300516
+    roc_auc_macro: 0.7527720929090026
+    training_time_sec: 155.8220729827881
+  model_directory: models/gradient_boosting_optimized
+  trained_at: '2026-06-28 17:04:50'
+K-Nearest Neighbors:
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.5328120636693661
+    brier_score: 0.5827050172205158
+    f1_macro: 0.4542209328829598
+    log_loss: 2.0039948578395137
+    memory_usage_mb: 6.609375
+    model_name: K-Nearest Neighbors
+    precision_macro: 0.45642986840688965
+    prediction_time_sec: 0.3120579719543457
+    recall_macro: 0.46220900842605533
+    roc_auc_macro: 0.6669668280625114
+    training_time_sec: 0.001741170883178711
+  model_directory: models/k-nearest_neighbors
+  trained_at: '2026-06-28 16:49:01'
+LSTM (DL):
+  config: &id002
+    batch_size: 256
+    early_stopping: patience=15, min_delta=1e-4
+    fc_dropout: 0.2
+    framework: PyTorch
+    hidden_dim: 128
+    input_dim: 37
+    layer_norm: true
+    loss: LabelSmoothingCrossEntropy(smoothing=0.05)
+    lr: 0.001
+    lr_scheduler: ReduceLROnPlateau(factor=0.5, patience=5)
+    lstm_dropout: 0.3
+    max_epochs: 200
+    model_name: LSTM
+    n_classes: 3
+    num_layers: 2
+    optimizer: AdamW
+    padding: left-zero
+    seq_len: 5
+    sequence_mode: global_rolling_window
+    weight_decay: 0.0001
+    weight_init: kaiming_uniform (ih), orthogonal (hh), forget_bias=1
+  framework: PyTorch
+  hyperparameters: *id002
+  metrics:
+    accuracy: 0.4641975308641975
+    brier_score: 0.6438655124919707
+    ece: 0.041064477566447384
+    f1_macro: 0.24754527581604865
+    log_loss: 1.0668772459030151
+    mce: 0.21137444109752263
+    model_name: LSTM
+    pr_auc_macro: 0.34186374042561224
+    precision_macro: 0.3260181188566788
+    prediction_time_sec: 0.0842
+    recall_macro: 0.3355123769629114
+    roc_auc_macro: 0.5082352217343024
+    training_time_sec: 9.9
+  model_directory: models/lstm
+  trained_at: '2026-06-28 17:37:57'
+Logistic Regression:
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.6076514939960905
+    brier_score: 0.5047682433658203
+    f1_macro: 0.4605288802443665
+    log_loss: 0.8614136932476526
+    memory_usage_mb: 0.046875
+    model_name: Logistic Regression
+    precision_macro: 0.4961051835428705
+    prediction_time_sec: 0.0032749176025390625
+    recall_macro: 0.5038720142067504
+    roc_auc_macro: 0.7431004890852764
+    training_time_sec: 0.1419222354888916
+  model_directory: models/logistic_regression
+  trained_at: '2026-06-28 16:48:46'
+Logistic Regression (Optimized):
+  hyperparameters:
+    C: 0.01
+    max_iter: 2000
+    solver: saga
+  metrics:
+    accuracy: 0.5945130315500686
+    brier_score: 0.5239789111100721
+    ece: 0.017563899867071252
+    f1_macro: 0.4440886059474267
+    log_loss: 0.8900924334407695
+    mce: 0.507637332732028
+    model_name: Logistic Regression
+    pr_auc_macro: 0.5562467836729129
+    precision_macro: 0.4880548976741362
+    prediction_time_sec: 0.0007948875427246094
+    recall_macro: 0.4946942047402958
+    roc_auc_macro: 0.7278780484107088
+    training_time_sec: 14.098917722702026
+  model_directory: models/logistic_regression_optimized
+  trained_at: '2026-06-28 17:01:26'
+Naive Bayes:
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.5749790561295728
+    brier_score: 0.6333578677810109
+    f1_macro: 0.4919790536002356
+    log_loss: 1.658546196623414
+    memory_usage_mb: 0.296875
+    model_name: Naive Bayes
+    precision_macro: 0.5029979310838166
+    prediction_time_sec: 0.004649162292480469
+    recall_macro: 0.49486932066167894
+    roc_auc_macro: 0.7063485589176898
+    training_time_sec: 0.0042209625244140625
+  model_directory: models/naive_bayes
+  trained_at: '2026-06-28 16:49:02'
+Random Forest:
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.64786372521642
+    brier_score: 0.4778442949610784
+    f1_macro: 0.48414009195392466
+    log_loss: 0.8196199811527285
+    memory_usage_mb: 0.375
+    model_name: Random Forest
+    precision_macro: 0.5437717863091236
+    prediction_time_sec: 0.038227081298828125
+    recall_macro: 0.5435159486120793
+    roc_auc_macro: 0.7728265507289768
+    training_time_sec: 0.27896595001220703
+  model_directory: models/random_forest
+  trained_at: '2026-06-28 16:48:47'
+Random Forest (Optimized):
+  hyperparameters:
+    max_depth: 10
+    max_features: sqrt
+    min_samples_leaf: 4
+    min_samples_split: 2
+    n_estimators: 200
+  metrics:
+    accuracy: 0.6139917695473252
+    brier_score: 0.5006889608429619
+    ece: 0.02194136099269566
+    f1_macro: 0.46898081258267316
+    log_loss: 0.8520368432959073
+    mce: 0.18406170209507594
+    model_name: Random Forest
+    pr_auc_macro: 0.5866506165111441
+    precision_macro: 0.5159476000235894
+    prediction_time_sec: 0.0515599250793457
+    recall_macro: 0.5230140062971746
+    roc_auc_macro: 0.7509289677451857
+    training_time_sec: 30.524160623550415
+  model_directory: models/random_forest_optimized
+  trained_at: '2026-06-28 17:01:57'
+SVM (Linear):
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.35520804244624404
+    brier_score: 0.6424350693099081
+    f1_macro: 0.323274823755455
+    log_loss: 1.062903452176197
+    memory_usage_mb: 0.5625
+    model_name: SVM (Linear)
+    precision_macro: 0.32420045543487847
+    prediction_time_sec: 0.47169995307922363
+    recall_macro: 0.3236921632734717
+    roc_auc_macro: 0.48181315734002994
+    training_time_sec: 4.2569968700408936
+  model_directory: models/svm_linear
+  trained_at: '2026-06-28 16:49:01'
+XGBoost:
+  hyperparameters: {}
+  metrics:
+    accuracy: 0.635297402960067
+    brier_score: 0.4805598529978345
+    f1_macro: 0.5201286903488344
+    log_loss: 0.8137356042861938
+    memory_usage_mb: 0.109375
+    precision_macro: 0.5468043188056835
+    prediction_time_sec: 0.006712913513183594
+    recall_macro: 0.5444202590850699
+    roc_auc_macro: 0.7633120796079244
+    training_time_sec: 0.5338051319122314
+  model_directory: models/xgboost
+  trained_at: '2026-06-28 16:49:02'
+XGBoost (Optimized):
+  hyperparameters:
+    best_iteration: 498
+    colsample_bytree: 0.8
+    gamma: 0.1
+    learning_rate: 0.01
+    max_depth: 6
+    min_child_weight: 3
+    n_estimators: 500
+    subsample: 0.7
+  metrics:
+    accuracy: 0.6186556927297668
+    brier_score: 0.49614992670118085
+    ece: 0.012875896495706038
+    f1_macro: 0.47503361554674384
+    log_loss: 0.840765118598938
+    mce: 0.26911615133285527
+    model_name: XGBoost
+    pr_auc_macro: 0.5941598984876859
+    precision_macro: 0.5381882201254121
+    prediction_time_sec: 0.052438974380493164
+    recall_macro: 0.5283811798175017
+    roc_auc_macro: 0.7549382405474617
+    training_time_sec: 27.756319999694824
+  model_directory: models/xgboost_optimized
+  trained_at: '2026-06-28 17:05:20'

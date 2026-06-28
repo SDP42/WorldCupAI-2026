@@ -1,0 +1,38 @@
+# Data Engineering Pipeline Configuration
+
+raw_paths:
+  results: "International football results from 1872 to 2026/results.csv"
+  goalscorers: "International football results from 1872 to 2026/goalscorers.csv"
+  shootouts: "International football results from 1872 to 2026/shootouts.csv"
+  former_names: "International football results from 1872 to 2026/former_names.csv"
+  elo_ratings: "elo_ratings_wc2026.csv"
+  fifa_rankings: "fifa_mens_rank.csv"
+  player_aggregates: "player_aggregates.csv"
+  teams_form: "teams_form.csv"
+  teams_match_features: "teams_match_features.csv"
+  train_dataset: "FIFA World Cup Dataset/train.csv"
+  test_dataset: "FIFA World Cup Dataset/test.csv"
+  historical_matches: "FIFA World Cup Historical Dataset/data-csv/matches.csv"
+  historical_teams: "FIFA World Cup Historical Dataset/data-csv/teams.csv"
+  transfermarkt_players: "Football Data from Transfermarkt/players.csv"
+  transfermarkt_valuations: "Football Data from Transfermarkt/player_valuations.csv"
+
+processed_paths:
+  master_parquet: "processed/master_dataset.parquet"
+  master_csv: "processed/master_dataset.csv"
+  team_name_mapping: "mappings/team_name_mapping.csv"
+  mapping_directory: "mappings"
+  processed_directory: "processed"
+  reports_directory: "reports"
+  logs_directory: "logs"
+
+pipeline_settings:
+  min_match_date: "1970-01-01"  # Focus on modern era results where Elo and rankings are more reliable
+  leakage_check_columns:
+    - "home_score"
+    - "away_score"
+    - "winner"
+    - "result"
+    - "home_team_win"
+    - "away_team_win"
+    - "draw"
