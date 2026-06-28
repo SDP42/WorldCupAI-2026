@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.4641975308641975,
+    "precision_macro": 0.3260181188566788,
+    "recall_macro": 0.3355123769629114,
+    "f1_macro": 0.24754527581604865,
+    "roc_auc_macro": 0.5082352217343024,
+    "pr_auc_macro": 0.34186374042561224,
+    "log_loss": 1.0668772459030151,
+    "brier_score": 0.6438655124919707,
+    "training_time_sec": 9.9,
+    "prediction_time_sec": 0.0842,
+    "ece": 0.041064477566447384,
+    "mce": 0.21137444109752263,
+    "model_name": "LSTM"
+}

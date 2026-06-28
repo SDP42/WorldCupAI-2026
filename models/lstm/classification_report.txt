@@ -1,0 +1,9 @@
+              precision    recall  f1-score   support
+
+    Away Win       0.36      0.06      0.10      1080
+        Draw       0.15      0.01      0.01       841
+    Home Win       0.47      0.94      0.63      1724
+
+    accuracy                           0.46      3645
+   macro avg       0.33      0.34      0.25      3645
+weighted avg       0.36      0.46      0.33      3645

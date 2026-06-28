@@ -1,0 +1,13 @@
+{
+    "model_name": "Extra Trees",
+    "best_params": {
+        "n_estimators": 200,
+        "min_samples_split": 5,
+        "max_features": "sqrt",
+        "max_depth": null
+    },
+    "best_cv_neg_log_loss": 0.891400520919937,
+    "search_time_sec": 14.469486951828003,
+    "cv_folds": 5,
+    "strategy": "random"
+}

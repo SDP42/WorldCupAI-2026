@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.6,
+    "precision_macro": 0.5278198655515854,
+    "recall_macro": 0.5147518927951018,
+    "f1_macro": 0.47672175028875347,
+    "roc_auc_macro": 0.7363614696865283,
+    "pr_auc_macro": 0.5773259889814096,
+    "log_loss": 0.869486391544342,
+    "brier_score": 0.512965021969263,
+    "training_time_sec": 33.19,
+    "prediction_time_sec": 0.0629,
+    "ece": 0.023402935501561074,
+    "mce": 0.0688546895980835,
+    "model_name": "ANN"
+}

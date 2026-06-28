@@ -1,0 +1,12 @@
+{
+    "accuracy": 0.6076514939960905,
+    "precision_macro": 0.4961051835428705,
+    "recall_macro": 0.5038720142067504,
+    "f1_macro": 0.4605288802443665,
+    "roc_auc_macro": 0.7431004890852764,
+    "log_loss": 0.8614136932476526,
+    "brier_score": 0.5047682433658203,
+    "training_time_sec": 0.1419222354888916,
+    "prediction_time_sec": 0.0032749176025390625,
+    "memory_usage_mb": 0.046875
+}

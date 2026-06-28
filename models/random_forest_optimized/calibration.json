@@ -1,0 +1,30 @@
+{
+    "model_name": "Random Forest",
+    "calibration_method": "platt_scaling",
+    "baseline": {
+        "brier_score": 0.47381725816783554,
+        "log_loss": 0.8115947496418786,
+        "ece": 0.03262400631795662,
+        "mce": 0.13401393357121916
+    },
+    "platt_scaling": {
+        "brier_score": 0.47381725816783554,
+        "ece": 0.032624006317956616
+    },
+    "isotonic_regression": {
+        "brier_score": 0.47381725816783554,
+        "ece": 0.032624006317956616
+    },
+    "calibrated": {
+        "brier_score": 0.47381725816783554,
+        "log_loss": 0.8115947496418786,
+        "accuracy": 0.652052499301871,
+        "roc_auc_macro": 0.7737694122084223,
+        "ece": 0.032624006317956616,
+        "mce": 0.13401393357121916
+    },
+    "improvements": {
+        "brier_improvement": 0.0,
+        "ece_improvement": 6.938893903907228e-18
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "model_name": "LSTM",
+    "n_epochs": 17,
+    "best_val_loss": 1.06481,
+    "training_time_sec": 9.9,
+    "device": "mps"
+}

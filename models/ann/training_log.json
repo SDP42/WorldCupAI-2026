@@ -1,0 +1,7 @@
+{
+    "model_name": "ANN",
+    "n_epochs": 69,
+    "best_val_loss": 0.87244,
+    "training_time_sec": 33.19,
+    "device": "mps"
+}

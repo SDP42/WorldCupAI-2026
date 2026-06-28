@@ -1,0 +1,30 @@
+{
+    "model_name": "XGBoost",
+    "calibration_method": "platt_scaling",
+    "baseline": {
+        "brier_score": 0.46548881841103396,
+        "log_loss": 0.7940666079521179,
+        "ece": 0.02539464363497661,
+        "mce": 0.5270888209342957
+    },
+    "platt_scaling": {
+        "brier_score": 0.46548881841103396,
+        "ece": 0.02539464363497661
+    },
+    "isotonic_regression": {
+        "brier_score": 0.46548881841103396,
+        "ece": 0.02539464363497661
+    },
+    "calibrated": {
+        "brier_score": 0.46548881841103396,
+        "log_loss": 0.7940666079521179,
+        "accuracy": 0.6514939960904775,
+        "roc_auc_macro": 0.7790038635819895,
+        "ece": 0.02539464363497661,
+        "mce": 0.5270888209342957
+    },
+    "improvements": {
+        "brier_improvement": 0.0,
+        "ece_improvement": 0.0
+    }
+}

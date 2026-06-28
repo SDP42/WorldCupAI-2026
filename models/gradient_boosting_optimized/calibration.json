@@ -1,0 +1,30 @@
+{
+    "model_name": "Gradient Boosting",
+    "calibration_method": "platt_scaling",
+    "baseline": {
+        "brier_score": 0.46674037878442964,
+        "log_loss": 0.7951981228745743,
+        "ece": 0.02362927116384549,
+        "mce": 0.33554698888389456
+    },
+    "platt_scaling": {
+        "brier_score": 0.46674037878442964,
+        "ece": 0.02362927116384549
+    },
+    "isotonic_regression": {
+        "brier_score": 0.46674037878442964,
+        "ece": 0.02362927116384549
+    },
+    "calibrated": {
+        "brier_score": 0.46674037878442964,
+        "log_loss": 0.7951981228745743,
+        "accuracy": 0.6534487573303547,
+        "roc_auc_macro": 0.7760917053547077,
+        "ece": 0.02362927116384549,
+        "mce": 0.33554698888389456
+    },
+    "improvements": {
+        "brier_improvement": 0.0,
+        "ece_improvement": 0.0
+    }
+}

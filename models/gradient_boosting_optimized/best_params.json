@@ -1,0 +1,14 @@
+{
+    "model_name": "Gradient Boosting",
+    "best_params": {
+        "subsample": 0.8,
+        "n_estimators": 100,
+        "min_samples_split": 5,
+        "max_depth": 6,
+        "learning_rate": 0.05
+    },
+    "best_cv_neg_log_loss": 0.8688610059968118,
+    "search_time_sec": 155.76212286949158,
+    "cv_folds": 5,
+    "strategy": "random"
+}

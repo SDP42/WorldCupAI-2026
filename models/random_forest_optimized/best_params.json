@@ -1,0 +1,14 @@
+{
+    "model_name": "Random Forest",
+    "best_params": {
+        "n_estimators": 200,
+        "min_samples_split": 2,
+        "min_samples_leaf": 4,
+        "max_features": "sqrt",
+        "max_depth": 10
+    },
+    "best_cv_neg_log_loss": 0.8756700998974132,
+    "search_time_sec": 30.49975562095642,
+    "cv_folds": 5,
+    "strategy": "random"
+}

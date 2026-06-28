@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.6117969821673526,
+    "precision_macro": 0.5268620654151854,
+    "recall_macro": 0.5258880906300516,
+    "f1_macro": 0.4864181829847551,
+    "roc_auc_macro": 0.7527720929090026,
+    "pr_auc_macro": 0.5901272053666259,
+    "log_loss": 0.846284859700157,
+    "brier_score": 0.49916721395551267,
+    "training_time_sec": 155.8220729827881,
+    "prediction_time_sec": 0.045269012451171875,
+    "model_name": "Gradient Boosting",
+    "ece": 0.01789677065503426,
+    "mce": 0.23235821384793864
+}

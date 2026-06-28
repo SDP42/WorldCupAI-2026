@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.5945130315500686,
+    "precision_macro": 0.4880548976741362,
+    "recall_macro": 0.4946942047402958,
+    "f1_macro": 0.4440886059474267,
+    "roc_auc_macro": 0.7278780484107088,
+    "pr_auc_macro": 0.5562467836729129,
+    "log_loss": 0.8900924334407695,
+    "brier_score": 0.5239789111100721,
+    "training_time_sec": 14.098917722702026,
+    "prediction_time_sec": 0.0007948875427246094,
+    "model_name": "Logistic Regression",
+    "ece": 0.017563899867071252,
+    "mce": 0.507637332732028
+}

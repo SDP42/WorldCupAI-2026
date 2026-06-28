@@ -1,0 +1,30 @@
+{
+    "model_name": "Extra Trees",
+    "calibration_method": "platt_scaling",
+    "baseline": {
+        "brier_score": 0.48846945792221297,
+        "log_loss": 0.835577000054876,
+        "ece": 0.03871102113003817,
+        "mce": 0.27604166666666674
+    },
+    "platt_scaling": {
+        "brier_score": 0.48846945792221286,
+        "ece": 0.03871102113003818
+    },
+    "isotonic_regression": {
+        "brier_score": 0.48846945792221297,
+        "ece": 0.03871102113003818
+    },
+    "calibrated": {
+        "brier_score": 0.48846945792221286,
+        "log_loss": 0.835577000054876,
+        "accuracy": 0.636414409382854,
+        "roc_auc_macro": 0.7553609281040313,
+        "ece": 0.03871102113003818,
+        "mce": 0.27604166666666674
+    },
+    "improvements": {
+        "brier_improvement": 1.1102230246251565e-16,
+        "ece_improvement": -6.938893903907228e-18
+    }
+}

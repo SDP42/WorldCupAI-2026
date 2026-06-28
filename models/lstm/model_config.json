@@ -1,0 +1,23 @@
+{
+    "model_name": "LSTM",
+    "framework": "PyTorch",
+    "input_dim": 37,
+    "hidden_dim": 128,
+    "num_layers": 2,
+    "lstm_dropout": 0.3,
+    "fc_dropout": 0.2,
+    "seq_len": 5,
+    "n_classes": 3,
+    "layer_norm": true,
+    "weight_init": "kaiming_uniform (ih), orthogonal (hh), forget_bias=1",
+    "optimizer": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 256,
+    "loss": "LabelSmoothingCrossEntropy(smoothing=0.05)",
+    "lr_scheduler": "ReduceLROnPlateau(factor=0.5, patience=5)",
+    "early_stopping": "patience=15, min_delta=1e-4",
+    "max_epochs": 200,
+    "sequence_mode": "global_rolling_window",
+    "padding": "left-zero"
+}

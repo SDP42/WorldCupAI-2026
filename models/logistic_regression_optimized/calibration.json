@@ -1,0 +1,30 @@
+{
+    "model_name": "Logistic Regression",
+    "calibration_method": "platt_scaling",
+    "baseline": {
+        "brier_score": 0.5053891070700672,
+        "log_loss": 0.8623994169465787,
+        "ece": 0.022324727296542054,
+        "mce": 0.27322062423393034
+    },
+    "platt_scaling": {
+        "brier_score": 0.5053891070700672,
+        "ece": 0.022324727296542054
+    },
+    "isotonic_regression": {
+        "brier_score": 0.5053891070700672,
+        "ece": 0.022324727296542054
+    },
+    "calibrated": {
+        "brier_score": 0.5053891070700672,
+        "log_loss": 0.8623994169465787,
+        "accuracy": 0.6073722423903938,
+        "roc_auc_macro": 0.743159652801404,
+        "ece": 0.022324727296542054,
+        "mce": 0.27322062423393034
+    },
+    "improvements": {
+        "brier_improvement": 0.0,
+        "ece_improvement": 0.0
+    }
+}
