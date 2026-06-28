@@ -1,0 +1,9 @@
+{
+    "XGBoost": 0.48601851565350274,
+    "Gradient Boosting": 0.5139814843464963,
+    "Random Forest": 0.0,
+    "Extra Trees": 3.37799089550258e-16,
+    "Logistic Regression": 4.33830970446594e-16,
+    "ANN": 2.2769803393482833e-16,
+    "LSTM": 0.0
+}

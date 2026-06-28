@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.6145404663923183,
+    "precision_macro": 0.5339052394638526,
+    "recall_macro": 0.5179493763502783,
+    "f1_macro": 0.4649338592041186,
+    "roc_auc_macro": 0.7513020216329968,
+    "pr_auc_macro": 0.590648490014316,
+    "log_loss": 0.8638311599812212,
+    "brier_score": 0.5049127659562367,
+    "training_time_sec": 0.0,
+    "prediction_time_sec": 0.00021,
+    "ece": 0.03584644752759348,
+    "mce": 0.26995575219352114,
+    "model_name": "Soft Voting"
+}

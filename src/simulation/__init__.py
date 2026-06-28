@@ -1,0 +1,1 @@
+"""WorldCupAI — Simulation package."""

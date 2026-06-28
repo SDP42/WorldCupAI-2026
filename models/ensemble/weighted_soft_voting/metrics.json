@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.6150891632373113,
+    "precision_macro": 0.5241820141608386,
+    "recall_macro": 0.5267171795199554,
+    "f1_macro": 0.47944119900249316,
+    "roc_auc_macro": 0.7546737904892006,
+    "pr_auc_macro": 0.5932180024200532,
+    "log_loss": 0.8422342080900719,
+    "brier_score": 0.4969543508447207,
+    "training_time_sec": 0.11901402473449707,
+    "prediction_time_sec": 0.00027,
+    "ece": 0.01619927352232126,
+    "mce": 0.06714989476364885,
+    "model_name": "Weighted Soft Voting"
+}

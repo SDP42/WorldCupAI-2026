@@ -1,0 +1,35 @@
+{
+    "champion": "Ghana",
+    "runner_up": "Senegal",
+    "third_place": "England",
+    "fourth_place": "Sweden",
+    "average_confidence": 0.58546,
+    "most_confident_match": {
+        "match_no": 89,
+        "home": "Canada",
+        "away": "Morocco",
+        "winner": "Morocco",
+        "confidence": 0.80779
+    },
+    "least_confident_match": {
+        "match_no": 81,
+        "home": "United States",
+        "away": "Bosnia & Herzegovina",
+        "winner": "Bosnia & Herzegovina",
+        "confidence": 0.34101
+    },
+    "biggest_upset": {
+        "match_no": 81,
+        "home": "United States",
+        "away": "Bosnia & Herzegovina",
+        "winner": "Bosnia & Herzegovina",
+        "upset_val": 0.0
+    },
+    "closest_match": {
+        "match_no": 86,
+        "home": "Argentina",
+        "away": "Cape Verde",
+        "prob_home": 0.30047,
+        "prob_away": 0.30027
+    }
+}

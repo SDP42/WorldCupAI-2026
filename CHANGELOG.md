@@ -1,5 +1,82 @@
 # CHANGELOG
 
+## [Phase 11] - Production Streamlit Dashboard
+
+### Added
+- Streamlit web platform main entry router `app.py`.
+- Complete `dashboard/` directory modules:
+  - `data_loader.py` for caching files and models registry.
+  - `sidebar.py` for Royal Blue & Gold theme navigation.
+  - `cards.py` for glassmorphism summaries.
+  - `bracket.py` for widescreen tree grids.
+  - `reports.py` for Markdown and CSV downloads.
+  - `export.py` for tabular exports.
+  - `xai.py` for interactive Plotly explanations.
+  - `performance.py` for leaderboard comparisons.
+  - `settings.py` for folder configs and cache clearing.
+- Multi-page validation test suite `tests/test_dashboard.py`.
+- Platform guides (`README_STREAMLIT.md`, `README_DASHBOARD.md`, `DASHBOARD_USER_GUIDE.md`, `PHASE_11_APPROVAL_REPORT.md`).
+
+## [Phase 10] - Explainable AI & Decision Intelligence
+
+### Added
+- Complete `src/explainability/` suite:
+  - `feature_importance.py` for global metrics extraction.
+  - `global_explanations.py` for correlation and stability checks.
+  - `local_explanations.py` for match attribution and natural language narratives.
+  - `confidence_analysis.py` for entropy risk classification.
+  - `counterfactuals.py` for what-if scenarios.
+  - `ensemble_explanations.py` for voter probability breakdowns.
+  - `tournament_explanations.py` for champion path analytics.
+  - `visualizations.py` for 8 production plots.
+  - `report_generator.py` for markdown reporting.
+- High-quality XAI dashboard reports under root.
+## [Phase 8] — 2026-06-28 20:25:51
+
+### Added
+- Predefined authoritative JSON knockout schedule `configs/knockout_fixtures.json`
+- `src/prediction/` prediction package containing `KnockoutEngine`
+- `predict_tournament.py` orchestrator script
+- JSON bracket, tree, and summary files for Streamlit dashboard
+- `tests/test_phase8.py` automated test suite
+- Exhaustive documentation files (`README_PHASE8.md`, `README_KNOCKOUT_ENGINE.md`, `README_MATCH_PREDICTIONS.md`, `TOURNAMENT_PREDICTION_REPORT.md`, `MATCH_EXPLANATIONS.md`, `PHASE_8_APPROVAL_REPORT.md`)
+# CHANGELOG
+
+## [Phase 8] — 2026-06-28 20:18:24
+
+### Added
+- Predefined authoritative JSON knockout schedule `configs/knockout_fixtures.json`
+- `src/prediction/` prediction package containing `KnockoutEngine`
+- `predict_tournament.py` orchestrator script
+- JSON bracket, tree, and summary files for Streamlit dashboard
+- `tests/test_phase8.py` automated test suite
+- Exhaustive documentation files (`README_PHASE8.md`, `README_KNOCKOUT_ENGINE.md`, `README_MATCH_PREDICTIONS.md`, `TOURNAMENT_PREDICTION_REPORT.md`, `MATCH_EXPLANATIONS.md`, `PHASE_8_APPROVAL_REPORT.md`)
+# CHANGELOG
+
+## [Phase 7.1] — 2026-06-28 19:52:08
+
+### Added
+- Multi-objective weight optimization strategy in `EnsembleWeightOptimizer`
+- Constrained optimization bounds (Top-K, min_weight, max_weight)
+- Expanded diversity metrics (disagreement rate, Q-statistic, double-fault, pairwise KL)
+- McNemar test & bootstrap confidence interval statistical tools
+- STATISTICAL_ANALYSIS.md, MODEL_DIVERSITY_REPORT.md, ENSEMBLE_EXPLAINABILITY.md, PRODUCTION_VALIDATION.md
+- New test suite at `tests/test_phase7_improvements.py`
+
+# CHANGELOG
+
+## [Phase 7] — 2026-06-28 19:44:29
+
+### Added
+- `src/ensemble/` — ensemble package (diversity, voting, stacking, optimizer, evaluator, pipeline, export_val)
+- `train_ensemble.py` — Phase 7 orchestration script
+- `tests/test_phase7.py` — automated validation tests
+- `models/ensemble/` — all ensemble artifacts (ensemble.pkl, config, weights, metrics, predictions, calibration, heatmaps)
+- `README_PHASE7.md`, `README_ENSEMBLE.md`, `ENSEMBLE_COMPARISON.md`, `ENSEMBLE_SELECTION_REPORT.md`
+- `PHASE_7_APPROVAL_REPORT.md`
+
+# CHANGELOG
+
 ## [Phase 6] — 2026-06-28 17:37:57
 
 ### Added

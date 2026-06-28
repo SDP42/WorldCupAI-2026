@@ -8,7 +8,7 @@ import os
 import pickle
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 
 from src.deep_learning.prediction_interface import DLPredictionInterface
 from src.deep_learning.ann_model import ANNModel

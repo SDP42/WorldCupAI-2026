@@ -1,0 +1,20 @@
+{
+    "candidates": [
+        "XGBoost",
+        "Gradient Boosting",
+        "Random Forest",
+        "Extra Trees",
+        "Logistic Regression",
+        "ANN",
+        "LSTM"
+    ],
+    "n_models": 7,
+    "best_method": "Weighted Soft Voting",
+    "val_log_loss": 0.7935,
+    "stacking_meta": "LogisticRegression(C=0.1)",
+    "blending_meta": "RidgeClassifier(alpha=1.0)",
+    "weight_method": "SLSQP_minimize(Log Loss, val_set)",
+    "train_split": "2005\u20132018",
+    "val_split": "2019\u20132022",
+    "test_split": "2023+"
+}

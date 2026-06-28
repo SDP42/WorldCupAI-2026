@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.6183813443072702,
+    "precision_macro": 0.5231264979664588,
+    "recall_macro": 0.5300148737314055,
+    "f1_macro": 0.4811577568661562,
+    "roc_auc_macro": 0.7519251659199929,
+    "pr_auc_macro": 0.5919939416293377,
+    "log_loss": 0.8524463926080084,
+    "brier_score": 0.5009445248509905,
+    "training_time_sec": 0.07465219497680664,
+    "prediction_time_sec": 0.0013,
+    "ece": 0.02983632700225644,
+    "mce": 0.10925410435213678,
+    "model_name": "Stacking"
+}

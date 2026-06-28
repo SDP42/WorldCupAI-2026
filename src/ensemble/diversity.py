@@ -1,7 +1,8 @@
-"""WorldCupAI — Phase 7: Model Diversity & Agreement Analysis.
+"""WorldCupAI — Phase 7.1: Model Diversity & Agreement Analysis.
 
 Measures pairwise agreement, Cohen's Kappa, soft probability correlations,
-and error overlap to ensure selected ensemble members are highly complementary.
+error overlap, disagreement rate, Q-statistic, double-fault measure, and KL-divergence
+to ensure selected ensemble members are highly complementary.
 """
 import numpy as np
 import pandas as pd
@@ -88,6 +89,79 @@ class ModelDiversityAnalyzer:
 
         return pd.DataFrame(matrix, index=self.models, columns=self.models)
 
+    def compute_disagreement_rates(self) -> pd.DataFrame:
+        """Computes pairwise disagreement rates (proportion of differing predictions)."""
+        matrix = np.zeros((self.n_models, self.n_models))
+
+        for i, m1 in enumerate(self.models):
+            for j, m2 in enumerate(self.models):
+                pred1 = self.model_preds[m1]["y_pred"]
+                pred2 = self.model_preds[m2]["y_pred"]
+                matrix[i, j] = np.mean(pred1 != pred2)
+
+        return pd.DataFrame(matrix, index=self.models, columns=self.models)
+
+    def compute_q_statistics(self) -> pd.DataFrame:
+        """Computes pairwise Q-statistics between classifiers correct/incorrect patterns.
+
+        Q varies between -1 and 1. Values close to 0 suggest independent classifiers.
+        """
+        matrix = np.zeros((self.n_models, self.n_models))
+
+        for i, m1 in enumerate(self.models):
+            for j, m2 in enumerate(self.models):
+                if i == j:
+                    matrix[i, j] = 1.0
+                    continue
+                correct1 = (self.model_preds[m1]["y_pred"] == self.y_true)
+                correct2 = (self.model_preds[m2]["y_pred"] == self.y_true)
+
+                n11 = np.sum(correct1 & correct2)
+                n00 = np.sum((~correct1) & (~correct2))
+                n10 = np.sum(correct1 & (~correct2))
+                n01 = np.sum((~correct1) & correct2)
+
+                num = n11 * n00 - n10 * n01
+                den = n11 * n00 + n10 * n01
+                if den == 0:
+                    matrix[i, j] = 0.0
+                else:
+                    matrix[i, j] = num / den
+
+        return pd.DataFrame(matrix, index=self.models, columns=self.models)
+
+    def compute_double_faults(self) -> pd.DataFrame:
+        """Computes pairwise double-fault measure (proportion of samples where both models fail)."""
+        matrix = np.zeros((self.n_models, self.n_models))
+        n_samples = len(self.y_true)
+
+        for i, m1 in enumerate(self.models):
+            for j, m2 in enumerate(self.models):
+                incorrect1 = (self.model_preds[m1]["y_pred"] != self.y_true)
+                incorrect2 = (self.model_preds[m2]["y_pred"] != self.y_true)
+                n00 = np.sum(incorrect1 & incorrect2)
+                matrix[i, j] = n00 / n_samples
+
+        return pd.DataFrame(matrix, index=self.models, columns=self.models)
+
+    def compute_kl_divergences(self) -> pd.DataFrame:
+        """Computes pairwise symmetric KL divergence of predicted probabilities."""
+        matrix = np.zeros((self.n_models, self.n_models))
+
+        for i, m1 in enumerate(self.models):
+            for j, m2 in enumerate(self.models):
+                if i == j:
+                    matrix[i, j] = 0.0
+                    continue
+                p = np.clip(self.model_preds[m1]["y_prob"], 1e-15, 1.0 - 1e-15)
+                q = np.clip(self.model_preds[m2]["y_prob"], 1e-15, 1.0 - 1e-15)
+
+                kl_pq = np.sum(p * np.log(p / q), axis=1)
+                kl_qp = np.sum(q * np.log(q / p), axis=1)
+                matrix[i, j] = np.mean(0.5 * (kl_pq + kl_qp))
+
+        return pd.DataFrame(matrix, index=self.models, columns=self.models)
+
     def generate_recommendations(self) -> List[str]:
         """Automatically checks metrics and recommends candidate pruning/complements."""
         recs = []
@@ -95,7 +169,6 @@ class ModelDiversityAnalyzer:
         err_jaccard = self.compute_error_overlaps()
 
         recs.append("### Complementary Pair Recommendations")
-        # Find pairs with low probability correlation but relatively high individual accuracy
         pairs = []
         for i, m1 in enumerate(self.models):
             for j, m2 in enumerate(self.models):
@@ -105,7 +178,6 @@ class ModelDiversityAnalyzer:
                 j_val = err_jaccard.iloc[i, j]
                 pairs.append((m1, m2, c_val, j_val))
 
-        # Sort by lowest correlation first
         pairs = sorted(pairs, key=lambda x: x[2])
         for m1, m2, c_val, j_val in pairs[:4]:
             recs.append(
@@ -113,7 +185,6 @@ class ModelDiversityAnalyzer:
                 f"Prob Correlation = {c_val:.3f}, Error Overlap = {j_val:.3f}."
             )
 
-        # Warning for redundant models
         recs.append("\n### Redundancy Warnings")
         redundant = False
         for m1, m2, c_val, j_val in pairs:

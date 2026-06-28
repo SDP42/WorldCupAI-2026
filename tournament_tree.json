@@ -1,0 +1,290 @@
+{
+    "match_73": {
+        "match_no": 73,
+        "round": "Round of 32",
+        "home_team": "South Africa",
+        "away_team": "Canada",
+        "prob_home": 0.14139,
+        "prob_away": 0.65315,
+        "winner": "Canada"
+    },
+    "match_74": {
+        "match_no": 74,
+        "round": "Round of 32",
+        "home_team": "Germany",
+        "away_team": "Paraguay",
+        "prob_home": 0.23854,
+        "prob_away": 0.3693,
+        "winner": "Paraguay"
+    },
+    "match_75": {
+        "match_no": 75,
+        "round": "Round of 32",
+        "home_team": "Netherlands",
+        "away_team": "Morocco",
+        "prob_home": 0.16877,
+        "prob_away": 0.58102,
+        "winner": "Morocco"
+    },
+    "match_76": {
+        "match_no": 76,
+        "round": "Round of 32",
+        "home_team": "Brazil",
+        "away_team": "Japan",
+        "prob_home": 0.17297,
+        "prob_away": 0.54088,
+        "winner": "Japan"
+    },
+    "match_77": {
+        "match_no": 77,
+        "round": "Round of 32",
+        "home_team": "France",
+        "away_team": "Sweden",
+        "prob_home": 0.17737,
+        "prob_away": 0.4922,
+        "winner": "Sweden"
+    },
+    "match_78": {
+        "match_no": 78,
+        "round": "Round of 32",
+        "home_team": "Ivory Coast",
+        "away_team": "Norway",
+        "prob_home": 0.26338,
+        "prob_away": 0.55737,
+        "winner": "Norway"
+    },
+    "match_79": {
+        "match_no": 79,
+        "round": "Round of 32",
+        "home_team": "Mexico",
+        "away_team": "Ecuador",
+        "prob_home": 0.13504,
+        "prob_away": 0.5748,
+        "winner": "Ecuador"
+    },
+    "match_80": {
+        "match_no": 80,
+        "round": "Round of 32",
+        "home_team": "England",
+        "away_team": "DR Congo",
+        "prob_home": 0.34467,
+        "prob_away": 0.33984,
+        "winner": "England"
+    },
+    "match_81": {
+        "match_no": 81,
+        "round": "Round of 32",
+        "home_team": "United States",
+        "away_team": "Bosnia & Herzegovina",
+        "prob_home": 0.32798,
+        "prob_away": 0.34101,
+        "winner": "Bosnia & Herzegovina"
+    },
+    "match_82": {
+        "match_no": 82,
+        "round": "Round of 32",
+        "home_team": "Belgium",
+        "away_team": "Senegal",
+        "prob_home": 0.18314,
+        "prob_away": 0.61274,
+        "winner": "Senegal"
+    },
+    "match_83": {
+        "match_no": 83,
+        "round": "Round of 32",
+        "home_team": "Portugal",
+        "away_team": "Croatia",
+        "prob_home": 0.17489,
+        "prob_away": 0.56289,
+        "winner": "Croatia"
+    },
+    "match_84": {
+        "match_no": 84,
+        "round": "Round of 32",
+        "home_team": "Spain",
+        "away_team": "Austria",
+        "prob_home": 0.16241,
+        "prob_away": 0.57777,
+        "winner": "Austria"
+    },
+    "match_85": {
+        "match_no": 85,
+        "round": "Round of 32",
+        "home_team": "Switzerland",
+        "away_team": "Algeria",
+        "prob_home": 0.25574,
+        "prob_away": 0.4752,
+        "winner": "Algeria"
+    },
+    "match_86": {
+        "match_no": 86,
+        "round": "Round of 32",
+        "home_team": "Argentina",
+        "away_team": "Cape Verde",
+        "prob_home": 0.30047,
+        "prob_away": 0.30027,
+        "winner": "Cape Verde"
+    },
+    "match_87": {
+        "match_no": 87,
+        "round": "Round of 32",
+        "home_team": "Colombia",
+        "away_team": "Ghana",
+        "prob_home": 0.32155,
+        "prob_away": 0.36321,
+        "winner": "Ghana"
+    },
+    "match_88": {
+        "match_no": 88,
+        "round": "Round of 32",
+        "home_team": "Australia",
+        "away_team": "Egypt",
+        "prob_home": 0.14744,
+        "prob_away": 0.62053,
+        "winner": "Egypt"
+    },
+    "match_89": {
+        "match_no": 89,
+        "round": "Round of 16",
+        "home_team": "Canada",
+        "away_team": "Morocco",
+        "prob_home": 0.05223,
+        "prob_away": 0.80779,
+        "winner": "Morocco"
+    },
+    "match_90": {
+        "match_no": 90,
+        "round": "Round of 16",
+        "home_team": "Paraguay",
+        "away_team": "Sweden",
+        "prob_home": 0.09847,
+        "prob_away": 0.75502,
+        "winner": "Sweden"
+    },
+    "match_91": {
+        "match_no": 91,
+        "round": "Round of 16",
+        "home_team": "Japan",
+        "away_team": "Norway",
+        "prob_home": 0.14712,
+        "prob_away": 0.65104,
+        "winner": "Norway"
+    },
+    "match_92": {
+        "match_no": 92,
+        "round": "Round of 16",
+        "home_team": "Ecuador",
+        "away_team": "England",
+        "prob_home": 0.05017,
+        "prob_away": 0.78794,
+        "winner": "England"
+    },
+    "match_93": {
+        "match_no": 93,
+        "round": "Round of 16",
+        "home_team": "Croatia",
+        "away_team": "Austria",
+        "prob_home": 0.20202,
+        "prob_away": 0.56118,
+        "winner": "Austria"
+    },
+    "match_94": {
+        "match_no": 94,
+        "round": "Round of 16",
+        "home_team": "Bosnia & Herzegovina",
+        "away_team": "Senegal",
+        "prob_home": 0.0495,
+        "prob_away": 0.80441,
+        "winner": "Senegal"
+    },
+    "match_95": {
+        "match_no": 95,
+        "round": "Round of 16",
+        "home_team": "Cape Verde",
+        "away_team": "Egypt",
+        "prob_home": 0.06669,
+        "prob_away": 0.75777,
+        "winner": "Egypt"
+    },
+    "match_96": {
+        "match_no": 96,
+        "round": "Round of 16",
+        "home_team": "Algeria",
+        "away_team": "Ghana",
+        "prob_home": 0.14853,
+        "prob_away": 0.58182,
+        "winner": "Ghana"
+    },
+    "match_97": {
+        "match_no": 97,
+        "round": "Quarter-final",
+        "home_team": "Morocco",
+        "away_team": "Sweden",
+        "prob_home": 0.25198,
+        "prob_away": 0.50086,
+        "winner": "Sweden"
+    },
+    "match_98": {
+        "match_no": 98,
+        "round": "Quarter-final",
+        "home_team": "Austria",
+        "away_team": "Senegal",
+        "prob_home": 0.14571,
+        "prob_away": 0.68595,
+        "winner": "Senegal"
+    },
+    "match_99": {
+        "match_no": 99,
+        "round": "Quarter-final",
+        "home_team": "Norway",
+        "away_team": "England",
+        "prob_home": 0.05251,
+        "prob_away": 0.75941,
+        "winner": "England"
+    },
+    "match_100": {
+        "match_no": 100,
+        "round": "Quarter-final",
+        "home_team": "Egypt",
+        "away_team": "Ghana",
+        "prob_home": 0.14906,
+        "prob_away": 0.57302,
+        "winner": "Ghana"
+    },
+    "match_101": {
+        "match_no": 101,
+        "round": "Semi-final",
+        "home_team": "Sweden",
+        "away_team": "Senegal",
+        "prob_home": 0.10324,
+        "prob_away": 0.77896,
+        "winner": "Senegal"
+    },
+    "match_102": {
+        "match_no": 102,
+        "round": "Semi-final",
+        "home_team": "England",
+        "away_team": "Ghana",
+        "prob_home": 0.32131,
+        "prob_away": 0.35447,
+        "winner": "Ghana"
+    },
+    "match_103": {
+        "match_no": 103,
+        "round": "Third Place Play-off",
+        "home_team": "Sweden",
+        "away_team": "England",
+        "prob_home": 0.06852,
+        "prob_away": 0.76904,
+        "winner": "England"
+    },
+    "match_104": {
+        "match_no": 104,
+        "round": "Final",
+        "home_team": "Senegal",
+        "away_team": "Ghana",
+        "prob_home": 0.16551,
+        "prob_away": 0.51708,
+        "winner": "Ghana"
+    }
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "match_no": 73,
+    "round": "Round of 32",
+    "home_team": "South Africa",
+    "away_team": "Canada",
+    "date": "2026-06-28",
+    "time": "18:00",
+    "stadium": "SoFi Stadium",
+    "city": "Inglewood"
+  },
+  {
+    "match_no": 74,
+    "round": "Round of 32",
+    "home_team": "Germany",
+    "away_team": "Paraguay",
+    "date": "2026-06-29",
+    "time": "15:00",
+    "stadium": "Gillette Stadium",
+    "city": "Foxborough"
+  },
+  {
+    "match_no": 75,
+    "round": "Round of 32",
+    "home_team": "Netherlands",
+    "away_team": "Morocco",
+    "date": "2026-06-29",
+    "time": "19:00",
+    "stadium": "Estadio Akron",
+    "city": "Guadalajara"
+  },
+  {
+    "match_no": 76,
+    "round": "Round of 32",
+    "home_team": "Brazil",
+    "away_team": "Japan",
+    "date": "2026-06-30",
+    "time": "17:00",
+    "stadium": "NRG Stadium",
+    "city": "Houston"
+  },
+  {
+    "match_no": 77,
+    "round": "Round of 32",
+    "home_team": "France",
+    "away_team": "Sweden",
+    "date": "2026-06-30",
+    "time": "21:00",
+    "stadium": "MetLife Stadium",
+    "city": "East Rutherford"
+  },
+  {
+    "match_no": 78,
+    "round": "Round of 32",
+    "home_team": "Ivory Coast",
+    "away_team": "Norway",
+    "date": "2026-07-01",
+    "time": "18:00",
+    "stadium": "AT&T Stadium",
+    "city": "Arlington"
+  },
+  {
+    "match_no": 79,
+    "round": "Round of 32",
+    "home_team": "Mexico",
+    "away_team": "Ecuador",
+    "date": "2026-07-01",
+    "time": "21:00",
+    "stadium": "Estadio Azteca",
+    "city": "Mexico City"
+  },
+  {
+    "match_no": 80,
+    "round": "Round of 32",
+    "home_team": "England",
+    "away_team": "DR Congo",
+    "date": "2026-07-02",
+    "time": "17:00",
+    "stadium": "Mercedes-Benz Stadium",
+    "city": "Atlanta"
+  },
+  {
+    "match_no": 81,
+    "round": "Round of 32",
+    "home_team": "United States",
+    "away_team": "Bosnia & Herzegovina",
+    "date": "2026-07-02",
+    "time": "20:00",
+    "stadium": "Levi's Stadium",
+    "city": "Santa Clara"
+  },
+  {
+    "match_no": 82,
+    "round": "Round of 32",
+    "home_team": "Belgium",
+    "away_team": "Senegal",
+    "date": "2026-07-03",
+    "time": "15:00",
+    "stadium": "Lumen Field",
+    "city": "Seattle"
+  },
+  {
+    "match_no": 83,
+    "round": "Round of 32",
+    "home_team": "Portugal",
+    "away_team": "Croatia",
+    "date": "2026-07-03",
+    "time": "19:00",
+    "stadium": "BMO Field",
+    "city": "Toronto"
+  },
+  {
+    "match_no": 84,
+    "round": "Round of 32",
+    "home_team": "Spain",
+    "away_team": "Austria",
+    "date": "2026-07-04",
+    "time": "18:00",
+    "stadium": "Rose Bowl",
+    "city": "Pasadena"
+  },
+  {
+    "match_no": 85,
+    "round": "Round of 32",
+    "home_team": "Switzerland",
+    "away_team": "Algeria",
+    "date": "2026-07-04",
+    "time": "21:00",
+    "stadium": "BC Place",
+    "city": "Vancouver"
+  },
+  {
+    "match_no": 86,
+    "round": "Round of 32",
+    "home_team": "Argentina",
+    "away_team": "Cape Verde",
+    "date": "2026-07-05",
+    "time": "17:00",
+    "stadium": "Hard Rock Stadium",
+    "city": "Miami"
+  },
+  {
+    "match_no": 87,
+    "round": "Round of 32",
+    "home_team": "Colombia",
+    "away_team": "Ghana",
+    "date": "2026-07-05",
+    "time": "20:00",
+    "stadium": "Lincoln Financial Field",
+    "city": "Philadelphia"
+  },
+  {
+    "match_no": 88,
+    "round": "Round of 32",
+    "home_team": "Australia",
+    "away_team": "Egypt",
+    "date": "2026-07-06",
+    "time": "18:00",
+    "stadium": "GEHA Field",
+    "city": "Kansas City"
+  }
+]

@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.6170096021947874,
+    "precision_macro": 0.5242804083650058,
+    "recall_macro": 0.5272310205420946,
+    "f1_macro": 0.4786802898941664,
+    "roc_auc_macro": 0.7541988341970692,
+    "pr_auc_macro": 0.5915569166340869,
+    "log_loss": 0.8711269509972096,
+    "brier_score": 0.5077603411492545,
+    "training_time_sec": 0.00604701042175293,
+    "prediction_time_sec": 0.00074,
+    "ece": 0.04507595391703023,
+    "mce": 0.18633351000872522,
+    "model_name": "Blending"
+}
