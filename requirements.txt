@@ -1,0 +1,16 @@
+streamlit>=1.46.0
+pandas>=2.2.0
+numpy>=1.26.0
+scikit-learn>=1.5.0
+xgboost>=3.0.0
+torch>=2.7.0
+matplotlib>=3.9.0
+plotly>=6.1.0
+scipy>=1.15.0
+joblib>=1.5.0
+PyYAML>=6.0
+tqdm>=4.67.0
+networkx>=3.5
+shap
+seaborn
+optuna
