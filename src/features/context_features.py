@@ -21,7 +21,7 @@ class ContextFeatures(BaseFeatureGenerator):
         if 'neutral' in df.columns:
             features['is_neutral'] = df['neutral'].astype(int)
         else:
-            features['is_neutral'] = 0
+            features['is_neutral'] = 1
             
         if 'tournament' in df.columns:
             features['is_world_cup'] = df['tournament'].str.contains('FIFA World Cup', case=False, na=False).astype(int)

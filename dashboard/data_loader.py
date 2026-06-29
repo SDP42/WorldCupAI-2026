@@ -132,23 +132,38 @@ def get_dashboard_summary_metrics() -> Dict[str, Any]:
     """Pre-aggregates summary stats from multiple sources for quick display."""
     tourney = load_tournament_explanations()
     conf = load_confidence_summary()
-    sims = load_simulation_stats()
-    
+
     ch_info = tourney.get("champion_explanation", {})
     ru_info = tourney.get("runner_up_explanation", {})
-    
-    # Trace 3rd place from predictions if possible
+
+    # Derive champion / runner_up from Final match in predictions (authoritative)
     preds = load_predictions()
+    champion = "TBD"
+    runner_up = "TBD"
     third_place = "TBD"
     fourth_place = "TBD"
+
+    m104 = next((m for m in preds if m.get("match_no") == 104), None)
+    if m104:
+        champion = m104.get("predicted_winner", "TBD")
+        t1, t2 = m104.get("team1", m104.get("home_team", "")), m104.get("team2", m104.get("away_team", ""))
+        runner_up = t2 if champion == t1 else t1
+
     m103 = next((m for m in preds if m.get("match_no") == 103), None)
     if m103:
         third_place = m103.get("predicted_winner", "TBD")
-        fourth_place = m103.get("home_team") if m103.get("predicted_winner") == m103.get("away_team") else m103.get("away_team")
-    
+        t1, t2 = m103.get("team1", m103.get("home_team", "")), m103.get("team2", m103.get("away_team", ""))
+        fourth_place = t2 if third_place == t1 else t1
+
+    # Fall back to tournament_explanations.json if predictions missing
+    if champion == "TBD":
+        champion = ch_info.get("champion", "France")
+    if runner_up == "TBD":
+        runner_up = ru_info.get("runner_up", "Argentina")
+
     return {
-        "champion": ch_info.get("champion", "Argentina"),
-        "runner_up": ru_info.get("runner_up", "Sweden"),
+        "champion": champion,
+        "runner_up": runner_up,
         "third_place": third_place,
         "fourth_place": fourth_place,
         "mean_confidence": conf.get("confidence", {}).get("mean", 0.65),

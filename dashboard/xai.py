@@ -65,7 +65,7 @@ def render_xai_page(
     with tab_local:
         st.subheader("Local Match Explanation Viewer")
         if match_explanations:
-            match_labels = [f"Match {m['match_no']}: {m['home_team']} vs {m['away_team']} ({m['round']})" for m in match_explanations]
+            match_labels = [f"Match {m['match_no']}: {m.get('team1', m['home_team'])} vs {m.get('team2', m['away_team'])} ({m['round']})" for m in match_explanations]
             selected_match_label = st.selectbox("Select Matchup to Explain", match_labels)
             
             # Get selected match
@@ -79,7 +79,7 @@ def render_xai_page(
                 st.markdown(
                     f"""
                     <div style="background: rgba(22, 29, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 20px; min-height: 380px;">
-                        <h3 style="color:#FFD700; margin-top:0;">{m_exp['home_team']} vs {m_exp['away_team']}</h3>
+                        <h3 style="color:#FFD700; margin-top:0;">{m_exp.get('team1', m_exp['home_team'])} vs {m_exp.get('team2', m_exp['away_team'])}</h3>
                         <p style="color:#8892B0; font-size:12px;">{m_exp['round']} - Match No #{m_exp['match_no']}</p>
                         <hr style="border-top: 1px solid rgba(255,255,255,0.05); margin: 10px 0;">
                         <div style="margin-bottom:15px;">

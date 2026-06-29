@@ -1,35 +1,35 @@
 {
-    "champion": "Ghana",
-    "runner_up": "Senegal",
-    "third_place": "England",
-    "fourth_place": "Sweden",
-    "average_confidence": 0.58546,
+    "champion": "France",
+    "runner_up": "Argentina",
+    "third_place": "Spain",
+    "fourth_place": "Brazil",
+    "average_confidence": 0.43213,
     "most_confident_match": {
-        "match_no": 89,
-        "home": "Canada",
-        "away": "Morocco",
-        "winner": "Morocco",
-        "confidence": 0.80779
-    },
-    "least_confident_match": {
-        "match_no": 81,
-        "home": "United States",
-        "away": "Bosnia & Herzegovina",
-        "winner": "Bosnia & Herzegovina",
-        "confidence": 0.34101
-    },
-    "biggest_upset": {
-        "match_no": 81,
-        "home": "United States",
-        "away": "Bosnia & Herzegovina",
-        "winner": "Bosnia & Herzegovina",
-        "upset_val": 0.0
-    },
-    "closest_match": {
         "match_no": 86,
         "home": "Argentina",
         "away": "Cape Verde",
-        "prob_home": 0.30047,
-        "prob_away": 0.30027
+        "winner": "Argentina",
+        "confidence": 0.75763
+    },
+    "least_confident_match": {
+        "match_no": 100,
+        "home": "Argentina",
+        "away": "Colombia",
+        "winner": "Argentina",
+        "confidence": 0.33966
+    },
+    "biggest_upset": {
+        "match_no": 101,
+        "home": "France",
+        "away": "Spain",
+        "winner": "France",
+        "upset_val": 89.43
+    },
+    "closest_match": {
+        "match_no": 79,
+        "home": "Mexico",
+        "away": "Ecuador",
+        "prob_home": 0.34817,
+        "prob_away": 0.34291
     }
 }

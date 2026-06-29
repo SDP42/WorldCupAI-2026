@@ -209,6 +209,7 @@ def main():
     elif selected_page == "⚽ Match Predictions":
         st.markdown("<h2 style='color:#FFD700;'>⚽ Match Predictions Log</h2>", unsafe_allow_html=True)
         st.markdown("Detailed searchable predictions ledger for the 32 matches in the tournament bracket.")
+        st.info("🌐 **Neutral Venue Notice:** All matches are played at neutral venues (no home-ground advantage). Teams are labeled as Team 1 and Team 2 based on bracket positions.")
         
         if predictions:
             df_preds = pd.DataFrame(predictions)
@@ -220,9 +221,29 @@ def main():
             else:
                 df_filtered = df_preds
                 
-            # Formatting cols
-            cols_to_show = ["match_no", "round", "home_team", "away_team", "predicted_winner", "confidence", "entropy", "shootout_played"]
-            st.dataframe(df_filtered[cols_to_show], use_container_width=True)
+            # Formatting cols with neutral labels
+            df_display = df_filtered.copy()
+            df_display = df_display.rename(columns={
+                "home_team": "Team 1",
+                "away_team": "Team 2",
+                "predicted_winner": "Predicted Winner",
+                "confidence": "Confidence",
+                "entropy": "Entropy",
+                "shootout_played": "Shootout?",
+            })
+            
+            # Map probabilities if they exist
+            if "prob_team1_win" in df_display.columns:
+                df_display["Team 1 Win %"] = (df_display["prob_team1_win"] * 100).round(1)
+                df_display["Team 2 Win %"] = (df_display["prob_team2_win"] * 100).round(1)
+            else:
+                df_display["Team 1 Win %"] = (df_display["prob_home_win"] * 100).round(1)
+                df_display["Team 2 Win %"] = (df_display["prob_away_win"] * 100).round(1)
+                
+            df_display["Draw %"] = (df_display["prob_draw"] * 100).round(1)
+            
+            cols_to_show = ["match_no", "round", "Team 1", "Team 2", "Team 1 Win %", "Draw %", "Team 2 Win %", "predicted_outcome", "Predicted Winner", "Confidence", "Shootout?"]
+            st.dataframe(df_display[cols_to_show], use_container_width=True)
         else:
             st.warning("No prediction log found.")
 
@@ -268,14 +289,16 @@ def main():
     elif selected_page == "🔬 Counterfactual Analysis":
         st.markdown("<h2 style='color:#FFD700;'>🔬 What-If Perturbation Analysis</h2>", unsafe_allow_html=True)
         st.markdown("Analyze how the model decisions would change if team ratings (ELO, rank, recent form) were perturbed.")
+        st.info("🌐 **Neutral Venue Notice:** Matches are played at neutral venues. Team 1 / Team 2 indicate bracket order.")
         
         if not counterfactual_df.empty:
             # Let user select scenario
             scenarios_list = counterfactual_df["scenario"].unique()
             selected_scenario = st.selectbox("Select Scenario to Filter", scenarios_list)
             
-            filtered_cf = counterfactual_df[counterfactual_df["scenario"] == selected_scenario]
-            st.dataframe(filtered_cf[["match_no", "round", "home_team", "away_team", "original_winner", "new_winner", "confidence_delta", "decision_flip"]],
+            filtered_cf = counterfactual_df[counterfactual_df["scenario"] == selected_scenario].copy()
+            filtered_cf = filtered_cf.rename(columns={"home_team": "Team 1", "away_team": "Team 2"})
+            st.dataframe(filtered_cf[["match_no", "round", "Team 1", "Team 2", "original_winner", "new_winner", "confidence_delta", "decision_flip"]],
                          use_container_width=True)
 
             if os.path.exists("outputs/plots/counterfactual_comparison.png"):

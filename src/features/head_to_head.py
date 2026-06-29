@@ -10,6 +10,13 @@ class HeadToHeadFeatures(BaseFeatureGenerator):
         """
         Computes historical head-to-head (H2H) features between home and away teams.
         Vectorized using sorted team-pair groupings and shifted cumulative sums to prevent leakage.
+
+        IMPORTANT — Neutral Venue Note:
+          In the context of the FIFA World Cup (neutral venue), the labels 'h2h_home_wins'
+          and 'h2h_away_wins' are **positional** — they refer to the team listed as
+          'home_team' (Team 1) and 'away_team' (Team 2) in the bracket, respectively.
+          They do NOT imply any actual home-ground advantage. The feature names are
+          kept as-is because the trained models depend on these exact column names.
         """
         df = df.copy()
         df = df.sort_values('date')

@@ -167,7 +167,7 @@ class FeatureDictionary:
             "expected_value": "Medium"
         },
         "h2h_home_wins": {
-            "description": "Total number of wins by the current home team against the current away team in prior meetings.",
+            "description": "Total number of wins by the current Team 1 (first team in bracket/positional home team) against Team 2 in prior meetings (Neutral Venue context).",
             "formula": "count(home_wins)",
             "source": "results.csv (shifted)",
             "family": "Head-to-Head",
@@ -176,7 +176,7 @@ class FeatureDictionary:
             "expected_value": "High"
         },
         "h2h_away_wins": {
-            "description": "Total number of wins by the current away team against the current home team in prior meetings.",
+            "description": "Total number of wins by the current Team 2 (second team in bracket/positional away team) against Team 1 in prior meetings (Neutral Venue context).",
             "formula": "count(away_wins)",
             "source": "results.csv (shifted)",
             "family": "Head-to-Head",

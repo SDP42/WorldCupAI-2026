@@ -313,7 +313,16 @@ class KnockoutEngine:
         return stats
 
     def compute_h2h(self, team_a: str, team_b: str) -> Dict[str, Any]:
-        """Computes live historical H2H between A and B from master dataset."""
+        """Computes live historical H2H between A and B from master dataset.
+
+        NOTE — Neutral Venue Context:
+          Since FIFA World Cup matches are played at neutral venues, the labels
+          'h2h_home_wins' and 'h2h_away_wins' here are **positional** (team_a wins
+          vs team_b wins), NOT venue-based home/away wins. The feature names are
+          kept as-is to match the trained model's expected feature schema.
+          team_a = the team passed as 'home_team' (listed first in the bracket).
+          team_b = the team passed as 'away_team' (listed second in the bracket).
+        """
         canon_a = map_team_name(team_a)
         canon_b = map_team_name(team_b)
 
@@ -329,7 +338,8 @@ class KnockoutEngine:
             }
 
         draws = int(np.sum(h2h_matches["home_score"] == h2h_matches["away_score"]))
-        
+
+        # wins_a = historical wins by team_a (positionally 'home'), regardless of venue
         wins_a = 0
         gd_a = 0.0
         for _, row in h2h_matches.iterrows():
@@ -347,7 +357,9 @@ class KnockoutEngine:
         return {
             "h2h_meetings": meetings,
             "h2h_draws": draws,
+            # 'h2h_home_wins' = wins by team_a (positional label, NOT venue-based)
             "h2h_home_wins": wins_a,
+            # 'h2h_away_wins' = wins by team_b (positional label, NOT venue-based)
             "h2h_away_wins": wins_b,
             "h2h_gd": gd_a
         }
@@ -494,26 +506,31 @@ class KnockoutEngine:
         """Loads features, runs ensemble Soft/Weighted Soft voting, and determines winner."""
         logger.info(f"Predicting Match {match_no}: {home_team} vs {away_team} ({round_name})")
 
-        match_df = self.construct_matchup_features(home_team, away_team, date_str)
+        # Enforce venue neutrality (symmetry) by predicting both home/away configurations
+        match_df_1 = self.construct_matchup_features(home_team, away_team, date_str)
+        df_full_1 = pd.concat([self.df_master, match_df_1], ignore_index=True)
+        df_full_1["target"] = 0
+        probs_1 = self.pipeline.predict_proba(match_df_1, df_full_1)[0]
+        probs_1 = np.array(probs_1, dtype=float)
 
-        # Prepare augmented df_full for LSTM compatibility
-        df_full = pd.concat([self.df_master, match_df], ignore_index=True)
-        df_full["target"] = 0
+        match_df_2 = self.construct_matchup_features(away_team, home_team, date_str)
+        df_full_2 = pd.concat([self.df_master, match_df_2], ignore_index=True)
+        df_full_2["target"] = 0
+        probs_2 = self.pipeline.predict_proba(match_df_2, df_full_2)[0]
+        probs_2 = np.array(probs_2, dtype=float)
 
-        # Run predictions via our SubprocessEnsemblePipeline (bypasses library conflict crashes)
-        probs = self.pipeline.predict_proba(match_df, df_full)[0] 
-        probs = np.array(probs, dtype=float)
-        
-        # Normalize to sum strictly to 1.0
+        # Average the corresponding outcomes (reversing the team perspectives for the second match)
+        prob_home = (probs_1[2] + probs_2[0]) / 2.0  # Team 1 Win
+        prob_draw = (probs_1[1] + probs_2[1]) / 2.0  # Draw
+        prob_away = (probs_1[0] + probs_2[2]) / 2.0  # Team 2 Win
+
+        probs = np.array([prob_away, prob_draw, prob_home], dtype=float)
         probs /= np.sum(probs)
 
         entropy = float(-np.sum(probs * np.log2(probs + 1e-12)))
 
         prob_away, prob_draw, prob_home = probs[0], probs[1], probs[2]
         pred_idx = np.argmax(probs)
-        
-        outcome_labels = {0: "Away Win", 1: "Draw", 2: "Home Win"}
-        predicted_outcome = outcome_labels[pred_idx]
         confidence = float(probs[pred_idx])
 
         is_draw = (pred_idx == 1)
@@ -526,6 +543,15 @@ class KnockoutEngine:
         else:
             winner = home_team if pred_idx == 2 else away_team
 
+        # FIFA World Cup is played at neutral venues — use team names in outcome label,
+        # not "Home Win" / "Away Win" which implies a venue-based advantage.
+        if pred_idx == 1:
+            predicted_outcome = "Draw"
+        elif pred_idx == 2:
+            predicted_outcome = f"{home_team} Win"
+        else:
+            predicted_outcome = f"{away_team} Win"
+
         # Save last match date to track rest days correctly
         self.team_last_match_date[map_team_name(home_team)] = date_str
         self.team_last_match_date[map_team_name(away_team)] = date_str
@@ -537,14 +563,24 @@ class KnockoutEngine:
         match_report = {
             "match_no": match_no,
             "round": round_name,
+            # 'home_team' / 'away_team' are positional bracket labels (Team 1 / Team 2)
+            # — NOT actual home/away venue designations (FIFA WC is neutral venue).
             "home_team": home_team,
             "away_team": away_team,
+            # Neutral-venue aliases for display purposes
+            "team1": home_team,
+            "team2": away_team,
             "date": date_str,
             "stadium": stadium,
             "city": city,
+            "neutral_venue": True,
+            # Legacy probability fields kept for backward compatibility
             "prob_away_win": prob_away,
             "prob_draw": prob_draw,
             "prob_home_win": prob_home,
+            # Neutral-venue probability aliases (team1/team2 instead of home/away)
+            "prob_team1_win": prob_home,
+            "prob_team2_win": prob_away,
             "predicted_outcome": predicted_outcome,
             "predicted_winner": winner,
             "confidence": confidence,
@@ -552,7 +588,7 @@ class KnockoutEngine:
             "shootout_played": shootout_played,
             "shootout_reason": shootout_reason,
             "features": {
-                **match_df.iloc[0].to_dict(),
+                **match_df_1.iloc[0].to_dict(),
                 "home_elo": home_elo,
                 "away_elo": away_elo
             }

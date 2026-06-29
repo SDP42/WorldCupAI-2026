@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## [Neutral Venue Fix] — 2026-06-29 19:04:27
+
+### Fixed
+- `is_neutral` hardcoded to `1` in `src/features/context_features.py` for all FIFA WC 2026 matches
+- Symmetric prediction averaging implemented in `src/prediction/knockout_engine.py`
+- `PredictionCache` swap logic updated in `src/simulation/probability_sampler.py`
+- Dashboard bracket display updated to show `prob_team1_win`/`prob_team2_win`
+- `xai.py` and `app.py` updated to use neutral team1/team2 labels
+- Outcome strings in probability sampler now use team name (e.g. "France Win" vs "Home Win")
+
+
+## [Phase 8] — 2026-06-29 17:59:11
+
+### Added
+- Predefined authoritative JSON knockout schedule `configs/knockout_fixtures.json`
+- `src/prediction/` prediction package containing `KnockoutEngine`
+- `predict_tournament.py` orchestrator script
+- JSON bracket, tree, and summary files for Streamlit dashboard
+- `tests/test_phase8.py` automated test suite
+- Exhaustive documentation files (`README_PHASE8.md`, `README_KNOCKOUT_ENGINE.md`, `README_MATCH_PREDICTIONS.md`, `TOURNAMENT_PREDICTION_REPORT.md`, `MATCH_EXPLANATIONS.md`, `PHASE_8_APPROVAL_REPORT.md`)
+# CHANGELOG
+
 ## [Phase 11] - Production Streamlit Dashboard
 
 ### Added

@@ -28,7 +28,7 @@ class PredictionCache:
                 "prob_home_win": cached["prob_away_win"],
                 "prob_draw": cached["prob_draw"],
                 "prob_away_win": cached["prob_home_win"],
-                "predicted_outcome": "Home Win" if cached["predicted_outcome"] == "Away Win" else ("Away Win" if cached["predicted_outcome"] == "Home Win" else "Draw"),
+                "predicted_outcome": "Draw" if cached["predicted_outcome"] == "Draw" else f"{cached['predicted_winner']} Win",
                 "predicted_winner": cached["predicted_winner"],
                 "confidence": cached["confidence"],
                 "entropy": cached["entropy"],
@@ -87,10 +87,10 @@ class ProbabilitySampler:
         
         if outcome_idx == 0:
             winner = away_team
-            outcome = "Away Win"
+            outcome = f"{away_team} Win"
         elif outcome_idx == 2:
             winner = home_team
-            outcome = "Home Win"
+            outcome = f"{home_team} Win"
         else:
             # Draw: Resolve shootout deterministically
             winner, shootout_reason = self.cache.engine.resolve_draw_deterministically(home_team, away_team)

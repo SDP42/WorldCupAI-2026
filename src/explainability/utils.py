@@ -28,44 +28,48 @@ FEATURE_COLS: List[str] = [
 ]
 
 # ── Human-readable feature labels ─────────────────────────────────────────────
+# NOTE: For FIFA World Cup (neutral venue), 'home' = Team 1 (listed first in bracket),
+#       'away' = Team 2 (listed second). No actual home-ground advantage exists.
 FEATURE_LABELS: Dict[str, str] = {
-    "elo_diff":                       "Elo Rating Difference",
-    "elo_ratio":                      "Elo Rating Ratio",
-    "rank_diff":                      "FIFA Ranking Difference",
-    "rank_ratio":                     "FIFA Ranking Ratio",
-    "home_form_win_rate_5":           "Home Win Rate (Last 5)",
-    "away_form_win_rate_5":           "Away Win Rate (Last 5)",
-    "home_form_avg_goals_scored_5":   "Home Avg Goals Scored (Last 5)",
-    "away_form_avg_goals_scored_5":   "Away Avg Goals Scored (Last 5)",
-    "home_form_avg_goals_conceded_5": "Home Avg Goals Conceded (Last 5)",
-    "away_form_avg_goals_conceded_5": "Away Avg Goals Conceded (Last 5)",
-    "home_form_clean_sheet_rate_5":   "Home Clean Sheet Rate (Last 5)",
-    "away_form_clean_sheet_rate_5":   "Away Clean Sheet Rate (Last 5)",
-    "home_form_win_rate_10":          "Home Win Rate (Last 10)",
-    "away_form_win_rate_10":          "Away Win Rate (Last 10)",
-    "home_form_avg_goals_scored_10":  "Home Avg Goals Scored (Last 10)",
-    "away_form_avg_goals_scored_10":  "Away Avg Goals Scored (Last 10)",
-    "home_form_avg_goals_conceded_10":"Home Avg Goals Conceded (Last 10)",
-    "away_form_avg_goals_conceded_10":"Away Avg Goals Conceded (Last 10)",
-    "home_form_clean_sheet_rate_10":  "Home Clean Sheet Rate (Last 10)",
-    "away_form_clean_sheet_rate_10":  "Away Clean Sheet Rate (Last 10)",
+    "elo_diff":                       "Elo Rating Difference (T1 − T2)",
+    "elo_ratio":                      "Elo Rating Ratio (T1 / T2)",
+    "rank_diff":                      "FIFA Ranking Difference (T1 − T2)",
+    "rank_ratio":                     "FIFA Ranking Ratio (T1 / T2)",
+    "home_form_win_rate_5":           "Team 1 Win Rate (Last 5)",
+    "away_form_win_rate_5":           "Team 2 Win Rate (Last 5)",
+    "home_form_avg_goals_scored_5":   "Team 1 Avg Goals Scored (Last 5)",
+    "away_form_avg_goals_scored_5":   "Team 2 Avg Goals Scored (Last 5)",
+    "home_form_avg_goals_conceded_5": "Team 1 Avg Goals Conceded (Last 5)",
+    "away_form_avg_goals_conceded_5": "Team 2 Avg Goals Conceded (Last 5)",
+    "home_form_clean_sheet_rate_5":   "Team 1 Clean Sheet Rate (Last 5)",
+    "away_form_clean_sheet_rate_5":   "Team 2 Clean Sheet Rate (Last 5)",
+    "home_form_win_rate_10":          "Team 1 Win Rate (Last 10)",
+    "away_form_win_rate_10":          "Team 2 Win Rate (Last 10)",
+    "home_form_avg_goals_scored_10":  "Team 1 Avg Goals Scored (Last 10)",
+    "away_form_avg_goals_scored_10":  "Team 2 Avg Goals Scored (Last 10)",
+    "home_form_avg_goals_conceded_10":"Team 1 Avg Goals Conceded (Last 10)",
+    "away_form_avg_goals_conceded_10":"Team 2 Avg Goals Conceded (Last 10)",
+    "home_form_clean_sheet_rate_10":  "Team 1 Clean Sheet Rate (Last 10)",
+    "away_form_clean_sheet_rate_10":  "Team 2 Clean Sheet Rate (Last 10)",
     "h2h_meetings":                   "Head-to-Head Meetings",
-    "h2h_home_wins":                  "H2H Home Wins",
-    "h2h_away_wins":                  "H2H Away Wins",
+    # h2h_home_wins = historical wins by Team 1 (positional, NOT venue-based)
+    "h2h_home_wins":                  "H2H Team 1 Wins (Neutral Venue)",
+    # h2h_away_wins = historical wins by Team 2 (positional, NOT venue-based)
+    "h2h_away_wins":                  "H2H Team 2 Wins (Neutral Venue)",
     "h2h_draws":                      "H2H Draws",
-    "h2h_gd":                         "H2H Goal Difference",
-    "home_attack_rating":             "Home Attack Rating",
-    "away_attack_rating":             "Away Attack Rating",
-    "home_defence_rating":            "Home Defence Rating",
-    "away_defence_rating":            "Away Defence Rating",
-    "home_world_cup_titles_before":   "Home World Cup Titles",
-    "away_world_cup_titles_before":   "Away World Cup Titles",
-    "is_neutral":                     "Neutral Venue",
+    "h2h_gd":                         "H2H Goal Difference (T1 perspective)",
+    "home_attack_rating":             "Team 1 Attack Rating",
+    "away_attack_rating":             "Team 2 Attack Rating",
+    "home_defence_rating":            "Team 1 Defence Rating",
+    "away_defence_rating":            "Team 2 Defence Rating",
+    "home_world_cup_titles_before":   "Team 1 World Cup Titles",
+    "away_world_cup_titles_before":   "Team 2 World Cup Titles",
+    "is_neutral":                     "Neutral Venue (always 1 for World Cup)",
     "is_world_cup":                   "World Cup Match",
     "is_friendly":                    "Friendly Match",
-    "home_rest_days":                 "Home Rest Days",
-    "away_rest_days":                 "Away Rest Days",
-    "rest_difference":                "Rest Day Difference",
+    "home_rest_days":                 "Team 1 Rest Days",
+    "away_rest_days":                 "Team 2 Rest Days",
+    "rest_difference":                "Rest Day Difference (T1 − T2)",
 }
 
 # ── Feature categories ─────────────────────────────────────────────────────────
@@ -119,7 +123,10 @@ CONFIDENCE_THRESHOLDS = {
 }
 
 # ── Outcome labels ─────────────────────────────────────────────────────────────
-OUTCOME_LABELS = {0: "Away Win", 1: "Draw", 2: "Home Win"}
+# NOTE: For World Cup (neutral venue), predicted_outcome in match reports uses
+# team names (e.g. "Argentina Win") instead of "Home Win" / "Away Win".
+# These integer-indexed labels are retained for internal model class mapping only.
+OUTCOME_LABELS = {0: "Team 2 Win", 1: "Draw", 2: "Team 1 Win"}
 
 # ── Model directories ──────────────────────────────────────────────────────────
 MODEL_DIRS: Dict[str, str] = {

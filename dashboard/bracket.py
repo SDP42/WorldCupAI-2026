@@ -10,6 +10,7 @@ def render_bracket_page(bracket_data: Dict[str, Any]):
     """Renders the tournament bracket view with CSS tree grid layouts."""
     st.markdown("<h2 style='color:#FFD700;'>🌳 Interactive Knockout Bracket</h2>", unsafe_allow_html=True)
     st.markdown("Explore the predicted progression of teams from the Round of 32 down to the Final.")
+    st.info("🌐 **Neutral Venue Notice:** All FIFA World Cup 2026 matches are played at neutral venues (USA, Canada, Mexico) with no home advantage. Teams are assigned as Home/Away positionally for bracket structure only.")
     
     # Check if data loaded successfully
     if not bracket_data:
@@ -180,12 +181,12 @@ def _get_bracket_match_html(match: Dict[str, Any]) -> str:
     <div class="bracket-card">
         <div class="bracket-team {h_class}">
             <span>{h}</span>
-            <span>{match.get('prob_home_win', 0.5)*100:.0f}%</span>
+            <span>{match.get('prob_team1_win', match.get('prob_home_win', 0.5))*100:.0f}%</span>
         </div>
         <div style="text-align: center; color: rgba(255, 255, 255, 0.15); font-size: 10px; margin: 2px 0;">VS</div>
         <div class="bracket-team {a_class}">
             <span>{a}</span>
-            <span>{match.get('prob_away_win', 0.5)*100:.0f}%</span>
+            <span>{match.get('prob_team2_win', match.get('prob_away_win', 0.5))*100:.0f}%</span>
         </div>
     </div>
     """

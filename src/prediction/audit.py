@@ -224,9 +224,24 @@ def run_sanity_checks(all_results: Dict[int, Dict]) -> List[Dict]:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def simulate_tournament(all_results: Dict[int, Dict], n_simulations: int = 1000,
-                         seed: int = 42) -> Dict[str, Any]:
+                         seed: int = 42, engine: Optional[Any] = None) -> Dict[str, Any]:
     """Runs N probabilistic simulations of the bracket using predicted probabilities."""
     rng = np.random.default_rng(seed)
+
+    cache = None
+    if engine is not None:
+        from src.simulation.probability_sampler import PredictionCache
+        cache = PredictionCache(engine)
+
+    match_dates = {
+        89: "2026-07-04", 90: "2026-07-04", 91: "2026-07-05", 92: "2026-07-05",
+        93: "2026-07-06", 94: "2026-07-06", 95: "2026-07-07", 96: "2026-07-07",
+        97: "2026-07-09", 98: "2026-07-10", 99: "2026-07-10", 100: "2026-07-11",
+        101: "2026-07-14", 102: "2026-07-15", 103: "2026-07-18", 104: "2026-07-19"
+    }
+    for m_no in range(73, 89):
+        if m_no in all_results:
+            match_dates[m_no] = all_results[m_no].get("date", "2026-06-28")
 
     # Track frequencies per team per stage
     stages = {
@@ -278,12 +293,17 @@ def simulate_tournament(all_results: Dict[int, Dict], n_simulations: int = 1000,
         for m_no, prev_a, prev_b in r16_pairings:
             w_a = winners[prev_a]
             w_b = winners[prev_b]
-            # Use stored probabilities for this exact pair if available, else 50/50
             stored = all_results.get(m_no, {})
-            if stored.get("home_team") == w_a and stored.get("away_team") == w_b:
+            if cache is not None:
+                date_str = match_dates.get(m_no, "2026-07-10")
+                pred = cache.get_prediction(w_a, w_b, m_no, date_str)
+                probs = np.array([pred["prob_home_win"], pred["prob_draw"], pred["prob_away_win"]])
+            elif stored.get("home_team") == w_a and stored.get("away_team") == w_b:
                 probs = np.array([stored["prob_home_win"], stored["prob_draw"], stored["prob_away_win"]])
+            elif stored.get("home_team") == w_b and stored.get("away_team") == w_a:
+                probs = np.array([stored["prob_away_win"], stored["prob_draw"], stored["prob_home_win"]])
             else:
-                probs = np.array([0.45, 0.10, 0.45])  # slight home advantage approximation
+                probs = np.array([0.45, 0.10, 0.45])
             probs = probs / probs.sum()
             p_home = probs[0] + probs[1] * 0.5
             winners[m_no] = w_a if rng.random() < p_home else w_b
@@ -295,8 +315,14 @@ def simulate_tournament(all_results: Dict[int, Dict], n_simulations: int = 1000,
             w_a = winners[prev_a]
             w_b = winners[prev_b]
             stored = all_results.get(m_no, {})
-            if stored.get("home_team") == w_a and stored.get("away_team") == w_b:
+            if cache is not None:
+                date_str = match_dates.get(m_no, "2026-07-10")
+                pred = cache.get_prediction(w_a, w_b, m_no, date_str)
+                probs = np.array([pred["prob_home_win"], pred["prob_draw"], pred["prob_away_win"]])
+            elif stored.get("home_team") == w_a and stored.get("away_team") == w_b:
                 probs = np.array([stored["prob_home_win"], stored["prob_draw"], stored["prob_away_win"]])
+            elif stored.get("home_team") == w_b and stored.get("away_team") == w_a:
+                probs = np.array([stored["prob_away_win"], stored["prob_draw"], stored["prob_home_win"]])
             else:
                 probs = np.array([0.45, 0.10, 0.45])
             probs = probs / probs.sum()
@@ -310,8 +336,14 @@ def simulate_tournament(all_results: Dict[int, Dict], n_simulations: int = 1000,
             w_a = winners[prev_a]
             w_b = winners[prev_b]
             stored = all_results.get(m_no, {})
-            if stored.get("home_team") == w_a and stored.get("away_team") == w_b:
+            if cache is not None:
+                date_str = match_dates.get(m_no, "2026-07-10")
+                pred = cache.get_prediction(w_a, w_b, m_no, date_str)
+                probs = np.array([pred["prob_home_win"], pred["prob_draw"], pred["prob_away_win"]])
+            elif stored.get("home_team") == w_a and stored.get("away_team") == w_b:
                 probs = np.array([stored["prob_home_win"], stored["prob_draw"], stored["prob_away_win"]])
+            elif stored.get("home_team") == w_b and stored.get("away_team") == w_a:
+                probs = np.array([stored["prob_away_win"], stored["prob_draw"], stored["prob_home_win"]])
             else:
                 probs = np.array([0.45, 0.10, 0.45])
             probs = probs / probs.sum()
@@ -328,8 +360,13 @@ def simulate_tournament(all_results: Dict[int, Dict], n_simulations: int = 1000,
         fin_home = winners[101]
         fin_away = winners[102]
         stored = all_results.get(104, {})
-        if stored.get("home_team") == fin_home and stored.get("away_team") == fin_away:
+        if cache is not None:
+            pred = cache.get_prediction(fin_home, fin_away, 104, "2026-07-19")
+            probs = np.array([pred["prob_home_win"], pred["prob_draw"], pred["prob_away_win"]])
+        elif stored.get("home_team") == fin_home and stored.get("away_team") == fin_away:
             probs = np.array([stored["prob_home_win"], stored["prob_draw"], stored["prob_away_win"]])
+        elif stored.get("home_team") == fin_away and stored.get("away_team") == fin_home:
+            probs = np.array([stored["prob_away_win"], stored["prob_draw"], stored["prob_home_win"]])
         else:
             probs = np.array([0.45, 0.10, 0.45])
         probs = probs / probs.sum()

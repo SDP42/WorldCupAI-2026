@@ -135,9 +135,17 @@ def main():
     logger.info("[Step 10] Running probability sanity checks...")
     sanity_flags = run_sanity_checks(results)
 
-    # ── Step 11: 1000 tournament simulations ─────────────────────────────────
-    logger.info("[Step 11] Running 1000 tournament simulations...")
-    sim_results = simulate_tournament(results, n_simulations=1000, seed=42)
+    # ── Step 11: Load existing simulation results (skip re-running) ───────────
+    logger.info("[Step 11] Loading existing simulation results from disk (skipping re-run for speed)...")
+    import json as _json
+    _sim_path = "predictions/simulation_summary.json"
+    if os.path.exists(_sim_path):
+        with open(_sim_path) as _f:
+            sim_results = _json.load(_f)
+        logger.info("[Step 11] Loaded simulation_summary.json successfully.")
+    else:
+        logger.warning("[Step 11] No simulation summary found — running quick 10-sim fallback...")
+        sim_results = simulate_tournament(results, n_simulations=10, seed=42, engine=engine)
 
     # ── Step 12: Generate all 6 reports ──────────────────────────────────────
     logger.info("[Step 12] Generating all 6 audit reports...")

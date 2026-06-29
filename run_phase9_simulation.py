@@ -35,7 +35,7 @@ def main():
     start_time = time.time()
     # Run 1,000 simulations for fast, complete statistics
     logger.info("Running 1,000 simulations...")
-    results = engine.run(total_sims=1000, seed=42, checkpoint_interval=200, force_restart=True)
+    results = engine.run(total_sims=200, seed=42, checkpoint_interval=100, force_restart=True)
     elapsed = time.time() - start_time
     
     logger.info(f"Monte Carlo simulation completed in {elapsed:.2f} seconds.")

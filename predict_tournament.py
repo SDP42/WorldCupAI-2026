@@ -55,20 +55,30 @@ def main():
         rows.append({
             "match_no": m["match_no"],
             "round": m["round"],
+            # Positional bracket labels (NOT venue-based home/away)
             "home_team": m["home_team"],
             "away_team": m["away_team"],
+            # Neutral-venue aliases — clearer for display
+            "team1": m["home_team"],
+            "team2": m["away_team"],
             "date": m["date"],
             "stadium": m["stadium"],
             "city": m["city"],
+            "neutral_venue": True,
+            # Legacy probability columns (kept for backward compatibility)
             "prob_away_win": round(m["prob_away_win"], 5),
-            "prob_draw": round(m["prob_draw"], 5),
+            "prob_draw":     round(m["prob_draw"], 5),
             "prob_home_win": round(m["prob_home_win"], 5),
+            # Neutral-venue probability columns
+            "prob_team1_win": round(m["prob_home_win"], 5),
+            "prob_team2_win": round(m["prob_away_win"], 5),
+            # predicted_outcome already uses team names (e.g. "Argentina Win")
             "predicted_outcome": m["predicted_outcome"],
             "predicted_winner": m["predicted_winner"],
-            "confidence": round(m["confidence"], 5),
-            "entropy": round(m["entropy"], 5),
-            "shootout_played": m["shootout_played"],
-            "shootout_reason": m["shootout_reason"]
+            "confidence":    round(m["confidence"], 5),
+            "entropy":       round(m["entropy"], 5),
+            "shootout_played":  m["shootout_played"],
+            "shootout_reason":  m["shootout_reason"]
         })
 
     df_results = pd.DataFrame(rows)
@@ -113,8 +123,8 @@ def main():
         biggest_upset_match = sorted_by_conf[0]
         biggest_upset_val = 0.0
 
-    # Closest predicted match (minimum difference between Home Win and Away Win probs)
-    closest_match = min(results.values(), key=lambda x: abs(x["prob_home_win"] - x["prob_away_win"]))
+    # Closest predicted match (minimum win-probability margin between the two teams)
+    closest_match = min(results.values(), key=lambda x: abs(x["prob_team1_win"] - x["prob_team2_win"]))
 
     # ── 4. Dashboard Data Preparation (Task 10) ──────────────────────────────
     # bracket.json
@@ -134,13 +144,20 @@ def main():
     tree_data = {}
     for m in rows:
         tree_data[f"match_{m['match_no']}"] = {
-            "match_no": m["match_no"],
-            "round": m["round"],
-            "home_team": m["home_team"],
-            "away_team": m["away_team"],
-            "prob_home": m["prob_home_win"],
-            "prob_away": m["prob_away_win"],
-            "winner": m["predicted_winner"]
+            "match_no":   m["match_no"],
+            "round":      m["round"],
+            # Neutral-venue labels
+            "home_team":  m["home_team"],
+            "away_team":  m["away_team"],
+            "team1":      m["home_team"],
+            "team2":      m["away_team"],
+            "neutral_venue": True,
+            "prob_team1": m["prob_team1_win"],
+            "prob_team2": m["prob_team2_win"],
+            # Legacy keys
+            "prob_home":  m["prob_home_win"],
+            "prob_away":  m["prob_away_win"],
+            "winner":     m["predicted_winner"]
         }
     with open("tournament_tree.json", "w") as f:
         json.dump(tree_data, f, indent=4)
