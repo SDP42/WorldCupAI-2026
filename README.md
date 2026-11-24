@@ -297,7 +297,7 @@ Current Status:
 # 🚀 Installation
 
 ```bash
-git clone https://github.com/yourusername/WorldCupAI.git
+git clone https://github.com/SDP42/WorldCupAI.git
 
 cd WorldCupAI
 
